@@ -16,6 +16,7 @@ trainIndex = data.index.isin(trainI)
 train = data.iloc[trainIndex]
 test = data.iloc[~trainIndex]
 
+
 training_var = ['hour_of_day','day_of_week','month','holiday','weekday','summertime','temp','dew','humidity','precip','snow','snowdepth','windspeed','cloudcover','visibility']
 x_train = train[training_var]
 y_train = train['increase_stock']
@@ -27,3 +28,8 @@ model.fit(scaler.transform(x_train),y_train)
 prediction = model.predict(scaler.transform(x_test))
 print(pd.crosstab(prediction,y_test))
 print(f'accuracy:{np.mean(prediction == y_test):.3f}')
+
+
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"

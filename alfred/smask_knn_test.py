@@ -32,9 +32,9 @@ for i in training_var:
     prediction = model.predict(x_a_test)
     print(i,np.mean(prediction == y_a_test))
 
-x_train = train[['hour_of_day','day_of_week','month','holiday','weekday','summertime','temp','dew','humidity','precip','snow','snowdepth','windspeed','cloudcover','visibility']]
+x_train = train[training_var]
 y_train = train['increase_stock']
-x_test = test[['hour_of_day','day_of_week','month','holiday','weekday','summertime','temp','dew','humidity','precip','snow','snowdepth','windspeed','cloudcover','visibility']]
+x_test = test[training_var]
 y_test = test['increase_stock']
 scaler = skl_pre.StandardScaler().fit(x_train)
 missclass = []
@@ -61,6 +61,6 @@ for k in range(1,51):
 K = np.linspace(1,50,50)
 plt.plot(K,missclass_non,'*')
 plt.show()
-#print(pd.crosstab(prediction,y_test))
-#print(f'accuracy:{np.mean(prediction == y_test):.3f}')
+print(pd.crosstab(prediction,y_test))
+print(f'accuracy:{np.mean(prediction == y_test):.3f}')
 print(var_test)
