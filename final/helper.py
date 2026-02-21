@@ -2,8 +2,13 @@
 import pandas as pd
 import numpy as np
 
+from sklearn.model_selection import (
+    train_test_split, StratifiedKFold, GridSearchCV, cross_val_score
+)
 from sklearn.dummy import DummyClassifier
 RANDOM_STATE = 42
+
+CV = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
 def load_data():
         
@@ -22,7 +27,7 @@ def load_data():
     return X, y
 
 
-def pre_process_training_data(X):
+def pre_process_training_data_cylic(X):
     X["month"] = X["month"] -1
 
     X["hour_sin"] = np.sin(2 * np.pi * X["hour_of_day"] / 24)
@@ -38,6 +43,10 @@ def pre_process_training_data(X):
 
     return X
 
+
+def pre_process_training_data(X):
+    
+    return X
 
 def dummy_classifier(X_train, y_train, X_test):
     classifier = DummyClassifier(strategy="most_frequent")
