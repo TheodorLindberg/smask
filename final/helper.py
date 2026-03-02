@@ -12,7 +12,8 @@ CV = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
 def load_data():
         
-    df = pd.read_csv("training_data.csv")
+    #df = pd.read_csv("training_data.csv")
+    df = pd.read_csv('test_data_VT2026')
 
     # Map labels to integers if needed
     df['increase_stock_label'] = df['increase_stock'].map({
