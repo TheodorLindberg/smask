@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import sklearn.neighbors as skl_nb
 import sklearn.preprocessing as skl_pre
 import sklearn.discriminant_analysis as skl_da
-training_data = '/Users/alfredaxelsson/Desktop/python/project smask/training_data_VT2026.csv'
+training_data = '/Users/alfredaxelsson/Desktop/python/project smask/github_smask/alfred/training_data_VT2026.csv'
 
 data = pd.read_csv(training_data)
 
@@ -49,17 +49,19 @@ for k in range(1,51):
 K = np.linspace(1,50,50)
 plt.plot(K,missclass,'.')
 
-missclass_non = []
-for k in range(1,51):
-
-    model = skl_nb.KNeighborsClassifier(n_neighbors=k)
-
-    model.fit(x_train,y_train)
-
-    prediction = model.predict(x_test)
-    missclass_non.append(np.mean(prediction != y_test))
-K = np.linspace(1,50,50)
-plt.plot(K,missclass_non,'*')
+#missclass_non = []
+#for k in range(1,51):
+#
+#    model = skl_nb.KNeighborsClassifier(n_neighbors=k)
+#
+ #   model.fit(x_train,y_train)
+#
+ #   prediction = model.predict(x_test)
+  #  missclass_non.append(np.mean(prediction != y_test))
+#K = np.linspace(1,50,50)
+#plt.plot(K,missclass_non,'*')
+plt.ylabel('Missclasification')
+plt.xlabel('K-value')
 plt.show()
 print(pd.crosstab(prediction,y_test))
 print(f'accuracy:{np.mean(prediction == y_test):.3f}')
